@@ -11,4 +11,8 @@ class Definition
     @id = id || @@total_rows += 1
   end
 
+  def ==(def_to_compare)
+    (definition == def_to_compare.definition) && (word_id == def_to_compare.word_id)
+  end
+
 end

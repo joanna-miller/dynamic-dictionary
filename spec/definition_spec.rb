@@ -19,4 +19,12 @@ describe(Definition) do
     end
   end
 
+  describe('#==') do
+    it('is the same definition if it has the same attributes as another definition') do
+    word_definition1 = Definition.new("last day of the week", @word.id, nil)
+    word_definition2 = Definition.new("last day of the week", @word.id, nil)
+    expect(word_definition1).to(eq(word_definition2))
+    end
+  end
+
 end
