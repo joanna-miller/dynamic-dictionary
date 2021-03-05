@@ -62,6 +62,17 @@ describe(Word) do
     end
   end
 
+  describe('#delete') do
+    it('deletes a word by id') do
+      word1 = Word.new("friday", nil)
+      word1.save
+      word2 = Word.new("project", nil)
+      word2.save
+      word1.delete
+      expect(Word.all).to(eq([word2]))
+    end
+  end
+
   describe('#definitions') do
     it('returns a words definitions') do
       word = Word.new("friday", nil)
