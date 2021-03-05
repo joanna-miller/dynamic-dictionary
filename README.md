@@ -11,6 +11,9 @@
 * _Ruby 2.6.5_
 * _Rspec 3.10_
 * _Pry 0.14.0_
+* _Capybara 3.35.3_
+* _Sinatra 2.1.0_
+
 ---
 
 ## Description
