@@ -6,7 +6,7 @@ require 'pry'
 describe(Definition) do
 
   before(:each) do
-    #Word.clear
+    Word.clear
     @word = Word.new("friday", nil)
     @word.save
   end
@@ -39,6 +39,27 @@ describe(Definition) do
       word_definition = Definition.new("last day of the week", @word.id, nil)
       word_definition.save
       expect(Definition.all).to(eq([word_definition]))
+    end
+  end
+
+  describe('.clear') do
+    it('clears all definitions') do
+      word_definition1 = Definition.new("last day of the week", @word.id, nil)
+      word_definition1.save
+      word_definition2 = Definition.new("the best day of the week", @word.id, nil)
+      word_definition2.save
+      Definition.clear
+      expect(Definition.all).to(eq([]))
+    end
+  end
+
+  describe('.find') do
+    it('finds definition by id') do
+      word_definition1 = Definition.new("last day of the week", @word.id, nil)
+      word_definition1.save
+      word_definition2 = Definition.new("the best day of the week", @word.id, nil)
+      word_definition2.save
+      expect(Definition.find(word_definition2.id)).to(eq(word_definition2))
     end
   end
 

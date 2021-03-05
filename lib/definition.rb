@@ -23,4 +23,12 @@ class Definition
     @@definitions[id] = Definition.new(definition, word_id, id)
   end
 
+  def self.clear
+    @@definitions = {}
+  end 
+
+  def self.find(id)
+    @@definitions[id]
+  end
+
 end
