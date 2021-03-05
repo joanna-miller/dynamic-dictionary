@@ -30,3 +30,14 @@ describe('adds a new word to the list', {:type => :feature}) do
     expect(page).to have_content('Friday')
   end
 end
+
+describe('create a word path', {:type => :feature}) do
+  it('clicks on a word from the list and goes to the word page') do
+    Word.clear()
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words')
+    click_on('Friday')
+    expect(page).to have_content('The word is: Friday')
+  end
+end
