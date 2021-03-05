@@ -1,0 +1,7 @@
+<h1>Update the word: <b><%= "#{@word.word}" %></b></h1>
+
+<form action="/words/<%= @word.id %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Word</button>
+</form>

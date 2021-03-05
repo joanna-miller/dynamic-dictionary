@@ -20,7 +20,6 @@ describe('navigates to the words path', {:type => :feature}) do
     click_on('Return to word list')
     expect(page).to have_content('Dynamic Dictionary')
   end
-
 end
 
 describe('create a new words path', {:type => :feature}) do
@@ -48,5 +47,16 @@ describe('create a word path', {:type => :feature}) do
     visit('/words')
     click_on('Friday')
     expect(page).to have_content('The word is: Friday')
+  end
+end
+
+describe('create an edit path', {:type => :feature}) do
+  it('clicks on Edit Word and goes to word edit page') do
+    Word.clear()
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words/1')
+    click_on('Edit Word')
+    expect(page).to have_content('Update the word: Friday')
   end
 end
