@@ -11,4 +11,8 @@ class Word
     self.word == word_to_compare.word
   end 
 
+  def self.all
+    @@words.values
+  end 
+
 end
