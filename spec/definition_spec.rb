@@ -34,4 +34,12 @@ describe(Definition) do
     end
   end
 
+  describe('#save') do
+    it('saves a definition') do
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
+      expect(Definition.all).to(eq([word_definition]))
+    end
+  end
+
 end
