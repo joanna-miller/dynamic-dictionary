@@ -3,7 +3,7 @@ require('./app')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
-describe('create a words path', {:type => :feature}) do
+describe('navigates to the words path', {:type => :feature}) do
   it('navigates to the words homepage') do
     visit('/')
     expect(page).to have_content('Dynamic Dictionary')
@@ -12,6 +12,15 @@ describe('create a words path', {:type => :feature}) do
     visit('/words')
     expect(page).to have_content('Dynamic Dictionary')
   end
+  it('navigates back to words page from word page') do
+    Word.clear()
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words/1')
+    click_on('Return to word list')
+    expect(page).to have_content('Dynamic Dictionary')
+  end
+
 end
 
 describe('create a new words path', {:type => :feature}) do
