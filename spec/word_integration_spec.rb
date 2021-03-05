@@ -111,5 +111,18 @@ describe('create a definitions path', {:type => :feature}) do
     click_on('Update')
     expect(page).to have_content('The last day of the week.')
   end
+  it('updates a definition that has already been entered', {:type => :feature}) do
+    Word.clear
+    Definition.clear
+    word = Word.new("Friday", nil)
+    word.save
+    definition = Definition.new("Best day of the week", word.id, nil)
+    definition.save
+    visit('/words')
+    click_on('Friday')
+    click_on('Edit Definition')
+    click_on('Delete definition')
+    expect(page).to have_content('There are no definitions for this word yet! Add a new one below.')
+  end
 end
 
