@@ -72,3 +72,15 @@ describe('deletes a word', {:type => :feature}) do
   end
 end
 
+describe('updates a word', {:type => :feature}) do
+  it('updates word with update form and returns to list of words') do
+    Word.clear()
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words/1/edit')
+    fill_in('word', :with => 'Saturday')
+    click_on('Update')
+    expect(page).to have_content('Saturday')
+  end
+end
+
