@@ -53,11 +53,12 @@ end
 describe('create an edit path', {:type => :feature}) do
   it('clicks on Edit Word and goes to word edit page') do
     Word.clear
+    Definition.clear
     word = Word.new("Friday", nil)
     word.save
     visit('/words/1')
     click_on('Edit Word')
-    expect(page).to have_content('Update the word: Friday')
+    expect(page).to have_content('Update Friday to be:')
   end
 end
 
@@ -84,7 +85,7 @@ describe('updates a word', {:type => :feature}) do
   end
 end
 
-describe('create a definition path', {:type => :feature}) do
+describe('create a definitions path', {:type => :feature}) do
   it('shows a definition on word page when definition is entered') do
     Word.clear
     Definition.clear
@@ -96,4 +97,19 @@ describe('create a definition path', {:type => :feature}) do
     click_on('Add Definition')
     expect(page).to have_content('Friday: The best day of the week.')
   end
+  it('updates a definition that has already been entered', {:type => :feature}) do
+    Word.clear
+    Definition.clear
+    word = Word.new("Friday", nil)
+    word.save
+    definition = Definition.new("Best day of the week", word.id, nil)
+    definition.save
+    visit('/words')
+    click_on('Friday')
+    click_on('Edit Definition')
+    fill_in('definition', :with => "The last day of the week.")
+    click_on('Update')
+    expect(page).to have_content('The last day of the week.')
+  end
 end
+

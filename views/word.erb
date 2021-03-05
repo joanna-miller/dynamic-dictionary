@@ -9,14 +9,14 @@
 <% if @word.definitions.any? %>
   <ol>
     <% @word.definitions.each do |definition| %>
-      <li><%= "#{@word.word}: #{definition.definition}" %></li>
+      <li><%= "#{@word.word}: #{definition.definition}" %><br><a href="/words/<%= @word.id %>/definitions/<%= definition.id %>">Edit Definition</a></li>
     <% end %>
   </ol>
 <% else %>
-  <p>There are no definitions for this word yet! Add one below.</p>
+  <p>There are no definitions for this word yet! Add a new one below.</p>
 <% end %>
 
-<h4>Add a Definition</h4>
+<h4>Add a definition</h4>
 
 <form action="/words/<%= @word.id %>/definitions" method="post">
   <div class="form-group">
@@ -25,3 +25,8 @@
   </div>
   <button type="submit" class="btn">Add Definition</button>
 </form>
+
+
+
+
+
