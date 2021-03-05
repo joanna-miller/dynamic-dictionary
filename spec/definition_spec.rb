@@ -63,4 +63,14 @@ describe(Definition) do
     end
   end
 
+  describe('#update') do
+    it('updates a definition by id') do
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
+      word_definition.update("the best day of the week", @word.id)
+      expect(word_definition.definition).to(eq("the best day of the week"))
+    end
+  end
+
+
 end
