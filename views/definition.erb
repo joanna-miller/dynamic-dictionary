@@ -1,6 +1,8 @@
 <h3>Word: <%= @definition.word.word %></h3>
 <h4>Definition: <%= @definition.definition %></h4>
 
+<p>Did you make a mistake when you were adding your definition? That's okay! Type the updated definition in the form below. Or if you don't want this definition to be included with this word anymore, you can delete it with the "Delete definition" button.</p>
+
 <form action="/words/<%= @definition.word.id %>/definitions/<%= @definition.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
