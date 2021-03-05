@@ -17,3 +17,11 @@ end
 get('/words/new') do
   erb(:new_word)
 end
+
+post('/words') do
+  word = params[:word]
+  new_word = Word.new(word, nil)
+  new_word.save
+  @words = Word.all
+  redirect to('/')
+end

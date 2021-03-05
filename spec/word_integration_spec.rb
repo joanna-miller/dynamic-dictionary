@@ -14,7 +14,7 @@ describe('create a words path', {:type => :feature}) do
   end
 end
 
-describe('creates a new words path', {:type => :feature}) do
+describe('create a new words path', {:type => :feature}) do
   it('navigates to the new words page') do
     visit('/')
     click_on('Add a new word!')
@@ -22,3 +22,11 @@ describe('creates a new words path', {:type => :feature}) do
   end
 end
 
+describe('adds a new word to the list', {:type => :feature}) do
+  it('creates a new word, then goes to the words page') do
+    visit('/words/new')
+    fill_in('word', :with => 'Friday')
+    click_on('Add my Word!')
+    expect(page).to have_content('Friday')
+  end
+end
