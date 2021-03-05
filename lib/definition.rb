@@ -1,7 +1,7 @@
 class Definition
   attr_reader :id
   attr_accessor :definition, :word_id
-
+  
   @@definitions = {}
   @@total_rows = 0
 

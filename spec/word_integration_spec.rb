@@ -3,6 +3,7 @@ require('./app')
 Capybara.app = Sinatra::Application
 set(:show_exceptions, false)
 
+
 describe('navigates to the words path', {:type => :feature}) do
   it('navigates to the words homepage') do
     visit('/')
@@ -13,7 +14,6 @@ describe('navigates to the words path', {:type => :feature}) do
     expect(page).to have_content('Dynamic Dictionary')
   end
   it('navigates back to words page from word page') do
-    Word.clear()
     word = Word.new("Friday", nil)
     word.save
     visit('/words/1')
@@ -41,7 +41,7 @@ end
 
 describe('create a word path', {:type => :feature}) do
   it('clicks on a word from the list and goes to the word page') do
-    Word.clear()
+    Word.clear
     word = Word.new("Friday", nil)
     word.save
     visit('/words')
@@ -52,7 +52,7 @@ end
 
 describe('create an edit path', {:type => :feature}) do
   it('clicks on Edit Word and goes to word edit page') do
-    Word.clear()
+    Word.clear
     word = Word.new("Friday", nil)
     word.save
     visit('/words/1')
@@ -63,7 +63,7 @@ end
 
 describe('deletes a word', {:type => :feature}) do
   it('deletes word with delete button and returns to list of words') do
-    Word.clear()
+    Word.clear
     word = Word.new("Friday", nil)
     word.save
     visit('/words/1/edit')
@@ -74,7 +74,7 @@ end
 
 describe('updates a word', {:type => :feature}) do
   it('updates word with update form and returns to list of words') do
-    Word.clear()
+    Word.clear
     word = Word.new("Friday", nil)
     word.save
     visit('/words/1/edit')
@@ -84,3 +84,16 @@ describe('updates a word', {:type => :feature}) do
   end
 end
 
+describe('create a definition path', {:type => :feature}) do
+  it('shows a definition on word page when definition is entered') do
+    Word.clear
+    Definition.clear
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words')
+    click_on('Friday')
+    fill_in('definition', :with => "The best day of the week.")
+    click_on('Add Definition')
+    expect(page).to have_content('Friday: The best day of the week.')
+  end
+end

@@ -49,3 +49,15 @@ patch('/words/:id') do
   @words = Word.all
   erb(:words)
 end
+
+get('words/:id/definitions/:definition_id') do
+  @definition = Definition.find([:definition_id].to_i)
+  erb(:definition)
+end
+
+post('/words/:id/definitions') do
+  @word = Word.find(params[:id].to_i)
+  definition = Definition.new(params[:definition], @word.id, nil)
+  definition.save
+  erb(:word)
+end
