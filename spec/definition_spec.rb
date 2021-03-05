@@ -6,6 +6,7 @@ require 'pry'
 describe(Definition) do
 
   before(:each) do
+    Definition.clear
     Word.clear
     @word = Word.new("friday", nil)
     @word.save
@@ -72,5 +73,15 @@ describe(Definition) do
     end
   end
 
+  describe('#delete') do
+    it('deletes a definition by id') do
+      word_definition1 = Definition.new("last day of the week", @word.id, nil)
+      word_definition1.save
+      word_definition2 = Definition.new("the best day of the week", @word.id, nil)
+      word_definition2.save
+      word_definition1.delete
+      expect(Definition.all).to(eq([word_definition2]))
+    end
+  end
 
 end
