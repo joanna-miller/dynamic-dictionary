@@ -13,3 +13,7 @@ end
 get('/words') do
   redirect to('/')
 end
+
+get('/words/new') do
+  erb(:new_word)
+end

@@ -13,3 +13,12 @@ describe('create a words path', {:type => :feature}) do
     expect(page).to have_content('Dynamic Dictionary')
   end
 end
+
+describe('creates a new words path', {:type => :feature}) do
+  it('navigates to the new words page') do
+    visit('/')
+    click_on('Add a new word!')
+    expect(page).to have_content('Add a New Word')
+  end
+end
+
