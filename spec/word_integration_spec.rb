@@ -8,4 +8,8 @@ describe('create a words path', {:type => :feature}) do
     visit('/')
     expect(page).to have_content('Dynamic Dictionary')
   end
+  it('navigates to the words homepage') do
+    visit('/words')
+    expect(page).to have_content('Dynamic Dictionary')
+  end
 end
