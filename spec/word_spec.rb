@@ -7,6 +7,7 @@ describe(Word) do
   
   before(:each) do
     Word.clear
+    Definition.clear
   end
 
   describe('#initialize') do
@@ -58,6 +59,18 @@ describe(Word) do
       word2 = Word.new("project", nil)
       word2.save
       expect(Word.find(word1.id)).to(eq(word1))
+    end
+  end
+
+  describe('#definitions') do
+    it('returns a words definitions') do
+      word = Word.new("friday", nil)
+      word.save
+      word_definition = Definition.new("last day of the week", word.id, nil)
+      word_definition.save
+      word_definition2 = Definition.new("the best day of the week", word.id, nil)
+      word_definition2.save
+      expect(word.definitions).to(eq([word_definition, word_definition2]))
     end
   end
 
