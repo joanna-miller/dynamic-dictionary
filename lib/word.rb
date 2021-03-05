@@ -7,4 +7,8 @@ class Word
     @word = word
   end  
 
+  def ==(word_to_compare)
+    self.word == word_to_compare.word
+  end 
+
 end
