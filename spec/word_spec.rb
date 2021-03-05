@@ -5,6 +5,10 @@ require 'pry'
 
 describe(Word) do
   
+  before(:each) do
+    Word.clear
+  end
+
   describe('#initialize') do
     it('creates a new instance of Word') do
       new_word = Word.new("project", nil)
@@ -44,6 +48,16 @@ describe(Word) do
       word2.save
       Word.clear
       expect(Word.all).to(eq([]))
+    end
+  end
+
+  describe('.find') do
+    it('finds a word by id') do
+      word1 = Word.new("friday", nil)
+      word1.save
+      word2 = Word.new("project", nil)
+      word2.save
+      expect(Word.find(word1.id)).to(eq(word1))
     end
   end
 
