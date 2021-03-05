@@ -22,9 +22,9 @@ describe(Definition) do
 
   describe('#==') do
     it('is the same definition if it has the same attributes as another definition') do
-    word_definition1 = Definition.new("last day of the week", @word.id, nil)
+    word_definition = Definition.new("last day of the week", @word.id, nil)
     word_definition2 = Definition.new("last day of the week", @word.id, nil)
-    expect(word_definition1).to(eq(word_definition2))
+    expect(word_definition).to(eq(word_definition2))
     end
   end
 
@@ -45,8 +45,8 @@ describe(Definition) do
 
   describe('.clear') do
     it('clears all definitions') do
-      word_definition1 = Definition.new("last day of the week", @word.id, nil)
-      word_definition1.save
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
       word_definition2 = Definition.new("the best day of the week", @word.id, nil)
       word_definition2.save
       Definition.clear
@@ -56,8 +56,8 @@ describe(Definition) do
 
   describe('.find') do
     it('finds definition by id') do
-      word_definition1 = Definition.new("last day of the week", @word.id, nil)
-      word_definition1.save
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
       word_definition2 = Definition.new("the best day of the week", @word.id, nil)
       word_definition2.save
       expect(Definition.find(word_definition2.id)).to(eq(word_definition2))
@@ -75,12 +75,24 @@ describe(Definition) do
 
   describe('#delete') do
     it('deletes a definition by id') do
-      word_definition1 = Definition.new("last day of the week", @word.id, nil)
-      word_definition1.save
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
       word_definition2 = Definition.new("the best day of the week", @word.id, nil)
       word_definition2.save
-      word_definition1.delete
+      word_definition.delete
       expect(Definition.all).to(eq([word_definition2]))
+    end
+  end
+
+  describe('.find_by_word') do
+    it('finds definitions for a word') do
+      word2 = Word.new("project", nil)
+      word2.save
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
+      word_definition2 = Definition.new("my own creation", word2.id, nil)
+      word_definition2.save
+      expect(Definition.find_by_word(word2.id)).to(eq([word_definition2]))      
     end
   end
 
