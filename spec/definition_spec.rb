@@ -96,4 +96,13 @@ describe(Definition) do
     end
   end
 
+
+  describe('#word') do
+    it('finds the word a definition belongs to') do
+      word_definition = Definition.new("last day of the week", @word.id, nil)
+      word_definition.save
+      expect(word_definition.word).to(eq(@word))
+    end
+  end
+
 end
