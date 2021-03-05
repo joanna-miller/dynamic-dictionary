@@ -15,4 +15,8 @@ class Definition
     (definition == def_to_compare.definition) && (word_id == def_to_compare.word_id)
   end
 
+  def self.all
+    @@definitions.values
+  end  
+
 end
