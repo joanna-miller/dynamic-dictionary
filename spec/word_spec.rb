@@ -73,6 +73,15 @@ describe(Word) do
     end
   end
 
+  describe('#update') do
+    it('updates a word by id') do
+      word1 = Word.new("friday", nil)
+      word1.save
+      word1.update("saturday")
+      expect(word1.word).to(eq("saturday"))
+    end
+  end
+
   describe('#definitions') do
     it('returns a words definitions') do
       word = Word.new("friday", nil)
