@@ -30,7 +30,7 @@ describe('create a new words path', {:type => :feature}) do
   end
 end
 
-describe('adds a new word to the list', {:type => :feature}) do
+describe('add a new word to the list', {:type => :feature}) do
   it('creates a new word, then goes to the words page') do
     visit('/words/new')
     fill_in('word', :with => 'Friday')
@@ -60,3 +60,15 @@ describe('create an edit path', {:type => :feature}) do
     expect(page).to have_content('Update the word: Friday')
   end
 end
+
+describe('deletes a word', {:type => :feature}) do
+  it('deletes word with delete button and returns to list of words') do
+    Word.clear()
+    word = Word.new("Friday", nil)
+    word.save
+    visit('/words/1/edit')
+    click_on('Delete Word')
+    expect(page).to have_content('There are currently no words to display.')
+  end
+end
+
