@@ -1,6 +1,6 @@
 <h1><a href="/words/<%= @word.id %>"><b><%= @word.word %></b></a></h1>
 
-<p>Did you make a mistake when you were inputting your word? That's okay! You can update it with the form below. Or if you don't want this word to be included in your list of Wonderful Words anymore, you can delete it with the "Delete Word" button.</p>
+<p>Did you make a mistake when you were inputting your word? That's okay! You can update it with the form below. Or if you don't want this word to be included in your list of Wonderful Words anymore, you can delete it with the "Delete Word" button. To go back to your word page, just click the word above.</p>
 
 <form action="/words/<%= @word.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
